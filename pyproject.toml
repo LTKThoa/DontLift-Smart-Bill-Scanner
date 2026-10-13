@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dontlift-smart-bill-scanner"
+version = "0.1.0"
+description = "Receipt validation and itemized bill splitting foundation for DontLift"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+dontlift-bill = "dontlift_bill.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
