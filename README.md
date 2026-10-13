@@ -32,6 +32,7 @@ Ví dụ synthetic trả tổng 83.000đ, a/b mỗi người 41.500đ. CLI trả
 - [Hướng dẫn đóng góp](CONTRIBUTING.md)
 - [Dataset bootstrap](docs/dataset-guide.md)
 - [Chạy OCR baseline và review](docs/ocr-baseline.md)
+- [Manifest và đánh giá OCR/extraction](docs/evaluation.md)
 - [Receipt pipeline skill](.agents/skills/dontlift-receipt-pipeline/SKILL.md)
 - [Bill validation skill](.agents/skills/dontlift-bill-validation/SKILL.md)
 
@@ -39,4 +40,4 @@ Skills lưu tại `.agents/skills` cùng repo để review/version cùng code. A
 
 ## Bước tiếp theo
 
-CP1: bổ sung manifest đã review và evaluator trên tập ảnh thật. CP2 đã có luồng CLI OCR → draft/correction → preview cho layout hẹp; cần mở rộng parser và benchmark trước tích hợp. CP3: benchmark đủ dữ liệu rồi mới fine-tune. Xem giới hạn trong hướng dẫn OCR.
+CP1 đã có manifest validator và evaluator (CER, món, tiền, tổng, receipt, latency, nhóm chất lượng); còn cần dữ liệu thật đã review và split đóng băng. CP2 đã có luồng CLI OCR → draft/correction → preview cho layout hẹp; cần mở rộng parser và benchmark trước tích hợp. CP3: benchmark đủ dữ liệu rồi mới fine-tune. Xem giới hạn trong hướng dẫn OCR.

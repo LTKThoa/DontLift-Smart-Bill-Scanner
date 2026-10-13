@@ -9,3 +9,5 @@ Annotate exact visible text and polygons, then token-to-field links and item row
 Deduplicate before splitting; merchant/template groups and augmented variants stay in one split. Freeze a held-out test set before training. A 70/15/15 split is an initial target, adjusted to group counts. Document group and quality distributions.
 
 Report sample counts, CER, money/total exact match, full-row match, receipt-level match and p50/p95 runtime separately. Bootstrap target is 300–500 diverse reviewed receipts, not a guarantee of adequate training coverage. A single sample cannot establish model accuracy.
+
+The manifest validator and evaluator are implemented. See [evaluation workflow](evaluation.md) for exact formats, split checks, ground-truth conventions, CLI commands and metric denominators. Use synthetic examples only to test tooling.
