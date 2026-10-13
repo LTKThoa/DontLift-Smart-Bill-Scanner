@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "receiptId": "synthetic-receipt-001",
+  "receiptRevision": 1,
+  "mode": "ITEMIZED",
+  "allocations": [
+    {"itemId": "food", "members": [{"memberUid": "a", "weight": 1}, {"memberUid": "b", "weight": 1}]},
+    {"itemId": "tea", "members": [{"memberUid": "a", "weight": 1}, {"memberUid": "b", "weight": 1}]}
+  ]
+}
