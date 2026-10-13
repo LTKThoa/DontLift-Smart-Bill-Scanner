@@ -4,7 +4,7 @@ Nền tảng scanner hóa đơn cho DontLift: OCR → trích xuất → Host s�
 
 ## Phạm vi hiện tại
 
-Package Python kiểm tra hóa đơn JSON và tạo preview chia theo món với số học phân số chính xác. Có CLI, synthetic fixtures, tests và GitHub Actions. Chưa có OCR runtime, model fine-tune, LLM, API server hoặc tích hợp mobile. Đầu ra local không phải bill thanh toán authoritative.
+Package Python chạy OCR CPU trên ảnh local, tạo draft có provenance, nhận correction thủ công, kiểm tra hóa đơn JSON và tạo preview chia theo món bằng phân số chính xác. Có CLI, JSON schemas, synthetic tests và GitHub Actions. Chưa fine-tune model, chưa có LLM, API server hoặc tích hợp mobile. Đầu ra local không phải bill thanh toán authoritative.
 
 Python 3.12+. Không cần cài dependency để chạy source/tests.
 
@@ -17,7 +17,7 @@ python -m dontlift_bill.cli preview examples/receipt.synthetic.json examples/pla
 
 Trên bash dùng `export PYTHONPATH=src`. Có thể cài package bằng `python -m pip install -e .` và dùng `dontlift-bill` thay cho `python -m dontlift_bill.cli`.
 
-Ví dụ synthetic trả tổng 83.000đ, a/b mỗi người 41.500đ. CLI trả exit code 2 nếu dữ liệu không hợp lệ. Input là hợp đồng reviewed receipt tối thiểu; provenance và draft OCR chưa được triển khai.
+Ví dụ synthetic trả tổng 83.000đ, a/b mỗi người 41.500đ. CLI trả exit code 2 nếu dữ liệu không hợp lệ. Các lệnh validate/preview nhận reviewed receipt tối thiểu; scan/extract tạo draft có provenance riêng.
 
 ## Quy tắc
 
@@ -31,6 +31,7 @@ Ví dụ synthetic trả tổng 83.000đ, a/b mỗi người 41.500đ. CLI trả
 - [Thiết kế và checkpoint](docs/superpowers/specs/2026-10-13-smart-bill-scanner-design.md)
 - [Hướng dẫn đóng góp](CONTRIBUTING.md)
 - [Dataset bootstrap](docs/dataset-guide.md)
+- [Chạy OCR baseline và review](docs/ocr-baseline.md)
 - [Receipt pipeline skill](.agents/skills/dontlift-receipt-pipeline/SKILL.md)
 - [Bill validation skill](.agents/skills/dontlift-bill-validation/SKILL.md)
 
@@ -38,4 +39,4 @@ Skills lưu tại `.agents/skills` cùng repo để review/version cùng code. A
 
 ## Bước tiếp theo
 
-CP1: schema draft đầy đủ, manifest/gán nhãn và evaluator. CP2: OCR adapter thật → parser → draft/correction → preview. CP3: benchmark đủ dữ liệu rồi mới fine-tune. Base hiện tại chưa hoàn thành CP1/CP2.
+CP1: bổ sung manifest đã review và evaluator trên tập ảnh thật. CP2 đã có luồng CLI OCR → draft/correction → preview cho layout hẹp; cần mở rộng parser và benchmark trước tích hợp. CP3: benchmark đủ dữ liệu rồi mới fine-tune. Xem giới hạn trong hướng dẫn OCR.
