@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "manifestSha256": "2b52cbb058488b647c67130f4b6804609915ed5ae1793d1fcef39cded3f6dec4",
+  "samples": [
+    {
+      "sampleId": "c",
+      "reviewed": true,
+      "ocrText": "Trà 12.000",
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "synthetic-receipt-001",
+        "revision": 1,
+        "currency": "VND",
+        "items": [
+          {
+            "itemId": "food",
+            "name": "Món dùng chung (synthetic)",
+            "quantity": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "unitPriceVnd": 59000,
+            "lineTotalVnd": 59000
+          },
+          {
+            "itemId": "tea",
+            "name": "Trà (synthetic)",
+            "quantity": {
+              "numerator": 2,
+              "denominator": 1
+            },
+            "unitPriceVnd": 12000,
+            "lineTotalVnd": 24000
+          }
+        ],
+        "adjustments": [],
+        "printedTotalVnd": 83000
+      }
+    },
+    {
+      "sampleId": "d",
+      "reviewed": true,
+      "ocrText": "Trà 12.000",
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "synthetic-receipt-001",
+        "revision": 1,
+        "currency": "VND",
+        "items": [
+          {
+            "itemId": "food",
+            "name": "Món dùng chung (synthetic)",
+            "quantity": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "unitPriceVnd": 59000,
+            "lineTotalVnd": 59000
+          },
+          {
+            "itemId": "tea",
+            "name": "Trà (synthetic)",
+            "quantity": {
+              "numerator": 2,
+              "denominator": 1
+            },
+            "unitPriceVnd": 12000,
+            "lineTotalVnd": 24000
+          }
+        ],
+        "adjustments": [],
+        "printedTotalVnd": 83000
+      }
+    }
+  ]
+}

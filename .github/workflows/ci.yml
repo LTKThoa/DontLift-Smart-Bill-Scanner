@@ -24,3 +24,9 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m dontlift_bill.cli preview examples/receipt.synthetic.json examples/plan.synthetic.json examples/members.synthetic.json
+      - name: Exercise manifest and evaluator
+        env:
+          PYTHONPATH: src
+        run: |
+          python -m dontlift_bill.cli check-manifest examples/manifest.synthetic.json
+          python -m dontlift_bill.cli evaluate examples/manifest.synthetic.json examples/labels.synthetic.json examples/predictions.synthetic.json --output outputs/synthetic-evaluation.json

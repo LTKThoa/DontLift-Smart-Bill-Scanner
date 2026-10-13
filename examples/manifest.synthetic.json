@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "datasetVersion": "synthetic-v1",
+  "synthetic": true,
+  "samples": [
+    {
+      "sampleId": "a",
+      "imageSha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+      "merchantGroup": "a",
+      "templateGroup": "a",
+      "familyGroup": "a",
+      "qualityGroup": "clear",
+      "split": "train",
+      "rightsConfirmed": true,
+      "source": "synthetic",
+      "reviewStatus": "REVIEWED",
+      "annotationVersion": "v1"
+    },
+    {
+      "sampleId": "b",
+      "imageSha256": "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+      "merchantGroup": "b",
+      "templateGroup": "b",
+      "familyGroup": "b",
+      "qualityGroup": "clear",
+      "split": "validation",
+      "rightsConfirmed": true,
+      "source": "synthetic",
+      "reviewStatus": "REVIEWED",
+      "annotationVersion": "v1"
+    },
+    {
+      "sampleId": "c",
+      "imageSha256": "2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6",
+      "merchantGroup": "c",
+      "templateGroup": "c",
+      "familyGroup": "c",
+      "qualityGroup": "clear",
+      "split": "test",
+      "rightsConfirmed": true,
+      "source": "synthetic",
+      "reviewStatus": "REVIEWED",
+      "annotationVersion": "v1"
+    },
+    {
+      "sampleId": "d",
+      "imageSha256": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+      "merchantGroup": "d",
+      "templateGroup": "d",
+      "familyGroup": "d",
+      "qualityGroup": "blurred",
+      "split": "test",
+      "rightsConfirmed": true,
+      "source": "synthetic",
+      "reviewStatus": "REVIEWED",
+      "annotationVersion": "v1"
+    }
+  ]
+}
