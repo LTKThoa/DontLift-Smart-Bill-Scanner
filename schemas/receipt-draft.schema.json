@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DontLift receipt draft v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "revision", "currency", "reviewStatus", "items", "adjustments", "printedTotalVnd", "totalCandidates", "computedTotalVnd", "discrepancyVnd", "warnings", "ocrDocument"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "receiptId": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 1},
+    "currency": {"const": "VND"},
+    "reviewStatus": {"const": "NEEDS_REVIEW"},
+    "items": {"type": "array", "items": {"$ref": "#/$defs/item"}},
+    "adjustments": {"type": "array", "maxItems": 0},
+    "printedTotalVnd": {"$ref": "#/$defs/moneyField"},
+    "totalCandidates": {"type": "array", "items": {"$ref": "#/$defs/moneyField"}},
+    "computedTotalVnd": {"type": ["integer", "null"], "minimum": 0},
+    "discrepancyVnd": {"type": ["integer", "null"]},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "ocrDocument": {"$ref": "ocr-document.schema.json"}
+  },
+  "$defs": {
+    "field": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "sourceTokenIds", "origin", "confidence"],
+      "properties": {
+        "value": {},
+        "sourceTokenIds": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "origin": {"enum": ["OCR", "DERIVED", "USER"]},
+        "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "moneyField": {"allOf": [{"$ref": "#/$defs/field"}, {"properties": {"value": {"type": ["integer", "null"], "minimum": 0}}}]},
+    "item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["itemId", "name", "quantity", "unitPriceVnd", "lineTotalVnd"],
+      "properties": {
+        "itemId": {"type": "string", "minLength": 1},
+        "name": {"allOf": [{"$ref": "#/$defs/field"}, {"properties": {"value": {"type": "string", "minLength": 1}}}]},
+        "quantity": {"allOf": [{"$ref": "#/$defs/field"}, {"properties": {"value": {"type": "object", "additionalProperties": false, "required": ["numerator", "denominator"], "properties": {"numerator": {"type": "integer", "minimum": 1}, "denominator": {"type": "integer", "minimum": 1}}}}}]},
+        "unitPriceVnd": {"$ref": "#/$defs/moneyField"},
+        "lineTotalVnd": {"$ref": "#/$defs/moneyField"}
+      }
+    }
+  }
+}

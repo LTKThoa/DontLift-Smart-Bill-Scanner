@@ -7,6 +7,8 @@ from pathlib import Path
 
 from .allocation import preview
 from .domain import validate_receipt
+from .extraction import extract_draft
+from .review import review_draft
 
 
 def read_json(path: str) -> object:
@@ -22,8 +24,33 @@ def main() -> int:
     split.add_argument("receipt")
     split.add_argument("plan")
     split.add_argument("members")
+    scan = commands.add_parser("scan", help="run local OCR and write a review draft")
+    scan.add_argument("image")
+    scan.add_argument("--output", required=True)
+    scan.add_argument("--model-dir", default="models")
+    extract = commands.add_parser("extract", help="parse a saved OCR document")
+    extract.add_argument("document")
+    extract.add_argument("--output", required=True)
+    review = commands.add_parser("review", help="apply explicit human correction")
+    review.add_argument("draft")
+    review.add_argument("correction")
+    review.add_argument("--output", required=True)
     args = parser.parse_args()
     try:
+        if args.command in {"scan", "extract", "review"}:
+            if args.command == "scan":
+                from .ocr import scan_image
+                result = extract_draft(scan_image(args.image, args.model_dir))
+            elif args.command == "extract":
+                result = extract_draft(read_json(args.document))
+            else:
+                result = review_draft(read_json(args.draft), read_json(args.correction))
+            output = Path(args.output)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            with output.open('x', encoding='utf-8') as handle:
+                json.dump(result, handle, ensure_ascii=False, indent=2)
+            print(json.dumps({'output': str(output), 'reviewStatus': result['reviewStatus']}))
+            return 0
         receipt = read_json(args.receipt)
         result = ({"valid": True, "receiptId": validate_receipt(receipt)["receiptId"]}
                   if args.command == "validate" else

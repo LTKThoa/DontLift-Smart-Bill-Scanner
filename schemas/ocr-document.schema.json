@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DontLift OCR document v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "imageId", "width", "height", "coordinates", "sourceTransform", "engine", "elapsedSeconds", "tokens"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "imageId": {"type": "string", "minLength": 1},
+    "width": {"type": "integer", "minimum": 1},
+    "height": {"type": "integer", "minimum": 1},
+    "coordinates": {"const": "exif-oriented-image-pixels"},
+    "sourceTransform": {"type": "object", "required": ["exifOrientation", "originalSize"], "properties": {"exifOrientation": {"type": "integer", "minimum": 1, "maximum": 8}, "originalSize": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}}}},
+    "engine": {"type": "object", "required": ["name", "version", "runtimeVersion", "language", "modelHashes"], "properties": {"name": {"type": "string"}, "version": {"type": "string"}, "runtimeVersion": {"type": "string"}, "language": {"type": "string"}, "modelHashes": {"type": "array", "items": {"type": "object", "required": ["file", "sha256"], "properties": {"file": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}}},
+    "elapsedSeconds": {"type": "number", "minimum": 0},
+    "tokens": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["tokenId", "text", "polygon", "confidence"], "properties": {"tokenId": {"type": "string", "minLength": 1}, "text": {"type": "string"}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}, "polygon": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0}}}}}}
+  }
+}
